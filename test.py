@@ -23,7 +23,7 @@ def dcinside():
 		file_link = ""
 		file_name = ""
 		file_extension = ""
-		save_point = "/Users/kotech/Desktop/store/"
+		save_point = "./"
 		now = time.localtime()
 		pre_time = str(now.tm_year) + str(now.tm_mon) + str(now.tm_mday) + str(now.tm_hour) + str(now.tm_min) + str(now.tm_sec)
 		save_time = str(now.tm_year) +"년"+ str(now.tm_mon) +"월"+ str(now.tm_mday) +"일"+ str(now.tm_hour) +"시"+ str(now.tm_min) +"분"+ str(now.tm_sec) +"초"
