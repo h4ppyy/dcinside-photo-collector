@@ -13,4 +13,13 @@ python test.py 갤러리주소
 
 새로운 폴더를 만들고 그 안에 test.py를 넣고 실행할 것!
 
+< 필수>
+
+python 2.7.x로 만든 프로그램
+
+< 버전 정보>
+
+1.1 readme.txt 추가
+
+1.2 readme.txt 내용 추가
 
