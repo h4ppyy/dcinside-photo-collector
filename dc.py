@@ -1,7 +1,16 @@
 #-*- coding:utf-8 -*-
 import requests
 import urllib
+import pymysql
 from bs4 import BeautifulSoup
+
+conn = pymysql.connect(
+    host='192.168.33.22', 
+    user='admin', 
+    password='0000',
+    db='adult', 
+    charset='utf8'
+)
 
 fix_link = "http://gall.dcinside.com"
 upload_dir = '/Users/ahn/python/img/'
@@ -21,6 +30,8 @@ headers = {
 r = requests.get(url, headers=headers)
 
 html = r.text
+
+#rows = curs.fetchall()
 
 soup = BeautifulSoup(html, "lxml")
 link = soup.find_all("td", { "class" : "t_subject" })
@@ -50,9 +61,17 @@ for m in link:
             r = requests.get(file_link, headers=headers)
             fff = r.text
             img_file = urllib.urlopen(file_link)
-            print fff
-            f = open(upload_dir + post_number + '#' + str(cnt) + ".png", 'wb')
+            full_dir = upload_dir + post_number + '#' + str(cnt) + ".png"
+            full_path = post_number + '#' + str(cnt) + ".png"
+            f = open(full_dir, 'wb')
             #f.write(fff.read())
             f.write(img_file.read())
 	    f.close()
+            curs = conn.cursor()
+            sql = '''
+                insert into picture(file_name)
+                values('{filename}')
+            '''.format(filename=full_path)
+            curs.execute(sql)
             cnt += 1
+conn.close()
