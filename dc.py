@@ -33,26 +33,26 @@ for m in link:
 
         inner_link = fix_link + m.a.get('href') + "\n"
         print inner_link
-	#html = urllib.urlopen(inner_link)
         r = requests.get(inner_link, headers=headers)
         inner_html = r.text
 	soup = BeautifulSoup(inner_html, "lxml")
 	link2 = soup.find_all("li", { "class" : "icon_pic" })
-        #print link2
+        cnt = 0
         for n in link2:
       	    pure_file_name = n.a.string
             file_link = n.a.get('href')
             print "파일명 = " + pure_file_name.encode('utf-8')
-            a = "http://image.dcinside.com/download.php"
-	    b = "http://dcimg2.dcinside.co.kr/viewimage.php"
-	    file_link = file_link.replace(a, b);
+            tmp_a = "http://image.dcinside.com/download.php"
+	    tmp_b = "http://dcimg2.dcinside.co.kr/viewimage.php"
+	    file_link = file_link.replace(tmp_a, tmp_b);
             print "다운로드링크 = " + file_link
             print "------------------------------------------------------------->"
             r = requests.get(file_link, headers=headers)
             fff = r.text
             img_file = urllib.urlopen(file_link)
             print fff
-            f = open(upload_dir + pure_file_name, 'wb')
+            f = open(upload_dir + post_number + '#' + str(cnt) + ".png", 'wb')
             #f.write(fff.read())
             f.write(img_file.read())
 	    f.close()
+            cnt += 1
