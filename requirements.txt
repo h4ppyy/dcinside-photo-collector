@@ -3,7 +3,7 @@ beautifulsoup4==4.6.0
 bs4==0.0.1
 certifi==2017.11.5
 chardet==3.0.4
-Django==1.11
+Django==1.11.29
 et-xmlfile==1.0.1
 get==0.0.39
 idna==2.6
